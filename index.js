@@ -4,7 +4,7 @@ import morgan from "morgan";
 import path from "path";
 import "dotenv/config";
 import "./src/database/dbConnection";
-
+import tareasRouter from "./src/routes/tarea.routes";
 // INSTANCIAMOS UN OBJETO DE LA CLASE express
 const app = express();
 
@@ -24,3 +24,6 @@ app.use(morgan("dev")) // Mostrara en entorno de dev, informacion sobre las peti
 app.use(express.static(path.join(__dirname, "/public"))) // Esto nos permite poder ejecutar los archivos estaticos de mi proyecto en la ruta raiz de mi backend
 // http://localhost:4000
 // HAREMOS QUE EL BACKEND SE CONECTE A NUESTRA BD
+
+// http://localhost:4000/apitareas/tareas
+app.use("/apitareas", tareasRouter);
