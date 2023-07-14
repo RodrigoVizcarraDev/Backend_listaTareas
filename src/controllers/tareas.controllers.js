@@ -17,5 +17,15 @@ export const crearTarea = async (req, res) => {
 }
 
 export const obtenerListaTareas = async (req, res) => {
-    res.send("Se hizo la peticion get");
+    try {
+        // Pidiendo lista de tareas con find de mongoose al modelo Tarea
+        const tareas = await Tarea.find();
+        res.status(200).json(tareas);
+
+    } catch (error) {
+        console.log(error);
+        res.status(404).json({
+            mensaje: "Error al obtener lista de tareas",
+        })
+    }
 }
