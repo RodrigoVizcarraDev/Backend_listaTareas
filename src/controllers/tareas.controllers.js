@@ -29,3 +29,17 @@ export const obtenerListaTareas = async (req, res) => {
         })
     }
 }
+
+export const obtenerTarea = async (req, res) => {
+    try {
+        //console.log(req.params.id);
+        // Debemos obtener el id de la request que nos llega
+        const tarea = await Tarea.findById(req.params.id);
+        res.status(200).json(tarea);
+    } catch (error) {
+        console.log(error);
+        res.status(404).json({
+            mensaje: "Error no se encontro el producto",
+        })
+    }
+}
